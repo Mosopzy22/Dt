@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joseph "Mosope" Damilare — Twitter & Community Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #16132A;
+    --bg-deep: #0F0D20;
+    --card: #211D3D;
+    --card-line: #34305a;
+    --gold: #E8B94A;
+    --gold-dim: #9c8148;
+    --ink: #F2EFE7;
+    --ink-dim: #A6A1C4;
+    --thread: #4a4478;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  ::selection{ background: var(--gold); color:#16132A; }
+
+  .wrap{ max-width: 720px; margin:0 auto; padding: 0 24px; position:relative; }
+
+  /* thread line */
+  .thread-line{
+    position:absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width:2px;
+    background: linear-gradient(to bottom, transparent, var(--thread) 4%, var(--thread) 96%, transparent);
+    z-index:0;
+  }
+  @media (max-width:640px){ .thread-line{ left: 16px; } .wrap{ padding: 0 16px; } }
+
+  header.hero{
+    padding: 64px 0 40px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.06em;
+    color: var(--gold);
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:inline-block;
+  }
+  h1{
+    font-family:'Instrument Serif', serif;
+    font-weight:400;
+    font-size: clamp(2.4rem, 8vw, 3.6rem);
+    line-height:1.05;
+    color:var(--ink);
+    margin-bottom:14px;
+  }
+  h1 em{ font-style:italic; color:var(--gold); }
+  .role{
+    font-size:1.05rem;
+    color: var(--ink-dim);
+    max-width:46ch;
+    margin-bottom:28px;
+  }
+  .handles{
+    display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .handle-chip{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color: var(--ink);
+    border:1px solid var(--card-line);
+    background: var(--card);
+    padding:7px 14px;
+    border-radius:100px;
+  }
+  .handle-chip b{ color:var(--gold); font-weight:600; }
+
+  /* pinned tweet card - the thesis / signature element */
+  .pinned{
+    margin-top:36px;
+    background: var(--card);
+    border:1px solid var(--card-line);
+    border-radius:16px;
+    padding:24px 26px;
+    position:relative;
+  }
+  .pinned::before{
+    content:"📌 PINNED";
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    color: var(--gold-dim);
+    display:block;
+    margin-bottom:14px;
+  }
+  .pinned p{
+    font-size:1.15rem;
+    color: var(--ink);
+    line-height:1.5;
+  }
+  .pinned .tag{
+    margin-top:16px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color: var(--ink-dim);
+  }
+
+  section{
+    position:relative;
+    padding: 44px 0 0 44px;
+  }
+  @media (max-width:640px){ section{ padding-left:32px; } }
+
+  .node{
+    position:absolute;
+    left: -1px;
+    top: 50px;
+    width:10px; height:10px;
+    border-radius:50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--card-line);
+  }
+  @media (max-width:640px){ .node{ left:-9px; } }
+
+  h2{
+    font-family:'Instrument Serif', serif;
+    font-size:1.9rem;
+    font-weight:400;
+    margin-bottom:6px;
+  }
+  .section-sub{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color: var(--gold-dim);
+    letter-spacing:0.04em;
+    margin-bottom:18px;
+    display:block;
+  }
+
+  .card{
+    background: var(--card);
+    border:1px solid var(--card-line);
+    border-radius:14px;
+    padding:22px 24px;
+    margin-bottom:16px;
+  }
+  .card h3{
+    font-size:1.05rem;
+    font-weight:600;
+    color: var(--ink);
+    margin-bottom:4px;
+  }
+  .card .meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color: var(--ink-dim);
+    margin-bottom:12px;
+  }
+  .card ul{ padding-left:18px; }
+  .card li{
+    color: var(--ink-dim);
+    font-size:0.95rem;
+    margin-bottom:8px;
+  }
+  .card li::marker{ color: var(--gold); }
+  .card li b{ color: var(--ink); font-weight:600; }
+
+  .skills-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:12px;
+    margin-bottom: 28px;
+  }
+  @media (max-width:640px){ .skills-grid{ grid-template-columns:1fr; } }
+  .skill-item{
+    background: var(--card);
+    border:1px solid var(--card-line);
+    border-radius:12px;
+    padding:16px 18px;
+  }
+  .skill-item .k{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color: var(--gold);
+    letter-spacing:0.04em;
+    display:block;
+    margin-bottom:6px;
+  }
+  .skill-item p{ font-size:0.92rem; color: var(--ink-dim); }
+
+  .links-row{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:8px;
+  }
+  a.linkbtn{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color: var(--bg-deep);
+    background: var(--gold);
+    padding:10px 18px;
+    border-radius:100px;
+    text-decoration:none;
+    display:inline-block;
+    transition: transform .15s ease, opacity .15s ease;
+  }
+  a.linkbtn:hover{ transform: translateY(-2px); }
+  a.linkbtn.ghost{
+    background:transparent;
+    color: var(--ink);
+    border:1px solid var(--card-line);
+  }
+
+  footer{
+    padding: 60px 0 60px 44px;
+    position:relative;
+  }
+  @media (max-width:640px){ footer{ padding-left:32px; } }
+  footer p{ color: var(--ink-dim); font-size:0.9rem; }
+  footer .sign{
+    font-family:'Instrument Serif', serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color: var(--gold);
+    margin-top:10px;
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .fade-in{
+      opacity:0;
+      transform: translateY(14px);
+      animation: fadeIn 0.7s ease forwards;
+    }
+    @keyframes fadeIn{ to{ opacity:1; transform:none; } }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="thread-line"></div>
+
+  <header class="hero fade-in">
+    <span class="eyebrow">Social Media / Community &mdash; Portfolio</span>
+    <h1>Joseph <em>"Mosope"</em> Damilare</h1>
+    <p class="role">I run Twitter accounts the way a community actually wants to be talked to — replying in real time, shaping the feed's voice, and keeping stakeholders in the loop. Sociology background, Web3-native, built for accounts that live in the replies.</p>
+    <div class="handles">
+      <span class="handle-chip">Personal &mdash; <b>@Mosopzy1</b></span>
+      <span class="handle-chip">Community &mdash; <b>Area 51</b></span>
+      <span class="handle-chip">Lagos, Nigeria</span>
+    </div>
+
+    <div class="pinned">
+      <p>The best Twitter accounts don't sound like a brand tweeting <em>at</em> people — they sound like someone who's actually in the mentions, every day, on time, in character. That's the job I did for Area 51, and it's the job I'm applying to do here.</p>
+      <div class="tag">— on managing a Web3 community account through its busiest stretch</div>
+    </div>
+  </header>
+
+  <section class="fade-in">
+    <div class="node"></div>
+    <span class="section-sub">01 / Experience</span>
+    <h2>Area 51 &mdash; Senior Community Associate</h2>
+
+    <div class="card">
+      <h3>Twitter / X account management</h3>
+      <div class="meta">Web3 community &middot; ongoing</div>
+      <ul>
+        <li><b>Reply guy, by design.</b> Owned real-time replies and comment engagement — first response, tone-setting, keeping the account present in every thread that mattered to the community.</li>
+        <li><b>Content curation.</b> Selected and shaped audience-facing posts, filtering what the community actually cared about from the noise of a fast-moving Web3 feed.</li>
+        <li><b>Stakeholder engagement.</b> Sat in meetings with partners and community stakeholders, translating what happened in those rooms into the account's public voice and vice versa.</li>
+        <li><b>Consistent brand voice.</b> Kept the account's tone recognizable across content, replies, and campaign pushes — the same "person" whether it's a shitpost reply or an announcement thread.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Personal brand &mdash; @Mosopzy1</h3>
+      <div class="meta">Content creator &middot; Web3, fintech & community writing</div>
+      <ul>
+        <li>Independently write and publish long-form and short-form content across X and Medium — Web3 protocols, fintech products, and community/creator-economy topics.</li>
+        <li>Built an audience from scratch by posting consistently and engaging genuinely, the same muscle the Area 51 account needed.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="fade-in">
+    <div class="node"></div>
+    <span class="section-sub">02 / What this covers on the brief</span>
+    <h2>Mapped to the role</h2>
+
+    <div class="skills-grid">
+      <div class="skill-item">
+        <span class="k">CONTENT CREATION</span>
+        <p>Wrote and curated posts tailored to a specific Web3 audience — not generic brand copy, content that read like it came from inside the community.</p>
+      </div>
+      <div class="skill-item">
+        <span class="k">SCHEDULING & CADENCE</span>
+        <p>Kept a consistent posting rhythm for Area 51 alongside a personal account, balancing planned content with real-time reactive replies.</p>
+      </div>
+      <div class="skill-item">
+        <span class="k">TRENDING TOPICS</span>
+        <p>Web3/crypto Twitter moves fast — staying current on trends was part of daily reply-guy work, not a separate task.</p>
+      </div>
+      <div class="skill-item">
+        <span class="k">BRAND VOICE</span>
+        <p>Maintained one consistent voice across replies, curated posts, and stakeholder-facing updates for Area 51.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fade-in">
+    <div class="node"></div>
+    <span class="section-sub">03 / Writing & Web3 portfolio</span>
+    <h2>Beyond the timeline</h2>
+    <div class="card">
+      <p style="color:var(--ink-dim); font-size:0.95rem;">Published work spanning Web3, fintech, and community topics — the same research-and-write process that feeds directly into knowing what a Web3 audience wants to see on Twitter.</p>
+      <div class="links-row">
+        <a class="linkbtn" href="https://x.com/mosopzy1" target="_blank">X / Twitter →</a>
+        <a class="linkbtn ghost" href="https://instagram.com/mosopzy22" target="_blank">Instagram →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="fade-in">
+    <div class="node"></div>
+    <p>Available to start immediately. Happy to walk through specific Area 51 threads or content on a call.</p>
+    <p class="sign">— Mosope</p>
+  </footer>
+</div>
+
+</body>
+</html>
